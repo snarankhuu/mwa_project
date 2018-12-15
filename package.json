@@ -1,0 +1,24 @@
+{
+  "name": "mwa_project",
+  "version": "1.0.0",
+  "description": "mwa project - share ride for university",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snarankhuu/mwa_project.git"
+  },
+  "author": "Surenkhuu, Nigus, Thanh Son",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snarankhuu/mwa_project/issues"
+  },
+  "homepage": "https://github.com/snarankhuu/mwa_project#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.0"
+  }
+}
