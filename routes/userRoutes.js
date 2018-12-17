@@ -38,4 +38,10 @@ module.exports = app => {
         }
     });
 
+    app.get(baseRoute + 'profile', (req,res) => {
+        res.status(200).json({'accessable': true});
+    });
+
+    app.get(baseRoute + 'secret', (req, res) => {
+    });
 };
