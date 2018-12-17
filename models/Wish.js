@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const whishSchema = new Schema({
+const wishSchema = new Schema({
     date: { type: Date, default: Date.now},
     avalaibleSeat: { type: Number, defualt: 0 },
     from: {type: String },
@@ -9,4 +9,4 @@ const whishSchema = new Schema({
     status: { type: String, enum: ['INACTIVE', 'ACTIVE'], default: ['ACTIVE'] }
 });
 
-mongoose.model('whishes', whishSchema);
+mongoose.model('wishes', wishSchema);

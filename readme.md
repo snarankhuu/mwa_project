@@ -4,7 +4,7 @@ In every block-end and every breaks students want to go their home or whatever t
 Through our platform people plan their trip and get a ride.
     1. register (if you have car you can be driver or passenger)
     2. schedule trip from to where and date
-    3. people write place to want to go like whishlist
+    3. people write place to want to go like wishlist
     4. some more features
 
 ### Day 1 - API All together
@@ -30,11 +30,11 @@ Through our platform people plan their trip and get a ride.
 
 ### Nigus
 ### Day 2 - API
-1. Design Whishlist
-2. create whish
+1. Design Wishlist
+2. create wish
 
 ### Day 3 - API
-1. Finish Whishlist/whish
+1. Finish Wishlist/wish
 2. Business logics
 
 ### Day 4 - API/WEB
