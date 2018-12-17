@@ -16,7 +16,7 @@ mongoose.connect(keys.mongoURI, {
     password: 'DbX4b4]+wL#:S-$5'
   },
   useNewUrlParser: true
-})
+});
 
 app.use(bodyParser.json());
 
