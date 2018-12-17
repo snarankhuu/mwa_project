@@ -17,7 +17,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddComponent implements OnInit {
   form: FormGroup;
-  constructor(private api: ApiService, private fb: FormBuilder) { 
+  constructor(private api: ApiService, private fb: FormBuilder) {
     this.form = this.fb.group({
       'name': ['', Validators.required]
     })
@@ -26,8 +26,14 @@ export class AddComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
-    console.log(this.form.value)
-    this.api.addSchedule(this.form.value);
+  async onSubmit() {
+    try {
+      console.log(this.form.value)
+      await this.api.addSchedule(this.form.value);
+
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 }
