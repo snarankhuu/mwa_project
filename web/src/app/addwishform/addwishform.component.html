@@ -1,3 +1,57 @@
-<p>
-  addwishform works!
-</p>
+<form #f="ngForm" (ngSubmit)="save(f.value)">
+    <div class="form-group">
+      <label for="pname">Name</label>
+      <input #pname="ngModel" ngModel name="pname" id="pname" type="text" class="form-control" required>
+      <div class="alert alert-danger" *ngIf="pname.touched && pname.invalid ">
+        Name is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label for="seat">Number of Seat</label>
+        <input #seat="ngModel"  ngModel name="seat" id="seat" type="number" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="seat.touched && seat.invalid">
+          Number of seat is required.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="dcity">Departure City</label>
+        <input #dcity="ngModel" ngModel name="dcity" id="dcity" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="dcity.touched && dcity.invalid">
+          Departure City is required.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="ddate">Departure Date</label>
+        <input #ddate="ngModel" ngModel name="ddate" id="ddate" type="date" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="ddate.touched && ddate.invalid">
+          Departure Date is required.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="acity">Arrival City</label>
+        <input #acity="ngModel" ngModel name="acity" id="acity" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="acity.touched && acity.invalid">
+          Arrival City is required.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="adate">Arrival Date</label>
+        <input #adate="ngModel" ngModel name="adate" id="adate" type="date" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="adate.touched && adate.invalid">
+          Arrival Date is required.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="atime">Expected Arrival Time</label>
+        <input #atime="ngModel" ngModel name="atime" id="atime" type="time" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="atime.touched && atime.invalid">
+          Expected Arrival Time is required.
+        </div>
+    </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
+
