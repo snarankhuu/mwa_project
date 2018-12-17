@@ -16,7 +16,7 @@ export class AddwishformComponent implements OnInit {
       await this.api.addWish(passanger);
     }
     catch (error) {
-      console.log(error)
+      console.log("error ",error.message);
     }
 
   }
