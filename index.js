@@ -1,16 +1,22 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-
+const keys = require("./config/keys");
 
 //models
 require("./models/User");
 require("./models/Schedule");
-require("./models/Whish");
+require("./models/Wish");
 
 const app = express();
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, {
+  auth: {
+    user: 'ride',
+    password: 'DbX4b4]+wL#:S-$5'
+  },
+  useNewUrlParser: true
+})
 
 app.use(bodyParser.json());
 
@@ -19,7 +25,7 @@ app.use(require('./middlewares/authenticate'));
 //routes
 require("./routes/userRoutes")(app);
 require("./routes/scheduleRoutes")(app);
-require("./routes/whishRoutes")(app);
+require("./routes/wishRoutes")(app);
 
 //env
 if (process.env.NODE_ENV === "production") {

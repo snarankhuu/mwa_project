@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const Whish = mongoose.model("whishes");
+const Wish = mongoose.model("wishes");
 
 module.exports = app => {
 
-  app.post('/whish', (req, res) => {
+  app.post('/wish', (req, res) => {
       res.end()
   });
 
