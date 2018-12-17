@@ -12,8 +12,8 @@ const app = express();
 
 mongoose.connect(keys.mongoURI, {
   auth: {
-    user: 'ride',
-    password: 'DbX4b4]+wL#:S-$5'
+    user: keys.user,
+    password: keys.mongopass
   },
   useNewUrlParser: true
 })
