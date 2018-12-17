@@ -12,4 +12,9 @@ export class AuthService {
   {
     return this.http.post('http://localhost:8000/api/user/signup',credentials);
   }
+
+  login(credentials)
+  {
+    return this.http.post('http://localhost:8000/api/user/signin',credentials);
+  }
 }
