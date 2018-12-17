@@ -4,8 +4,8 @@ const User = mongoose.model("users");
 
 module.exports = app => {
 
-  app.post('/user/login', (req, res) => {
-      res.end()
+  app.get('/user/login', (req, res) => {
+      res.end('abc')
   });
 
 };

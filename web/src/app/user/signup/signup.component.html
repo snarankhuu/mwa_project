@@ -9,7 +9,7 @@
   </div>
 
   <div class="form-group">
-    <input type="text" class="form-control" id="email" formControlName="email" placeholder="Email">
+    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
   </div>
 
   <div formGroupName="userPassword">
@@ -20,6 +20,9 @@
     <div class="form-group">
       <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword"
              placeholder="Confirm Password">
+      <div class="alert alert-danger" *ngIf="myForm.get('userPassword').touched && !myForm.get('userPassword').valid">
+        Password does not match
+      </div>
     </div>
   </div>
 
