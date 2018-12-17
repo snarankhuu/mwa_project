@@ -1,3 +1,33 @@
-<p>
-  wishlist works!
-</p>
+    <h2>List of Available Passengers</h2>
+    <p>Thank you for choosing us, add your route, plenty of drivers are waiting for you.</p> 
+    <p>
+      <a routerLink="/addwish" class="btn btn-primary">Add New Route</a>
+    </p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th># of Seat</th>
+          <th>Departure City</th>
+          <th>Departure Date</th>
+          <th>Arrival City</th>
+          <th>Arrival Date</th>
+          <th>Expected Arrival Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of passengers$ | async">
+          <td>{{p.id}}</td>
+          <td>{{p.pname}}</td>
+          <td>{{p.seat}}</td>
+          <td>{{p.dcity}}</td>
+          <td>{{p.ddate}}</td>
+          <td>{{p.acity}}</td>
+          <td>{{p.adate}}</td>
+          <td>{{p.atime}}</td>
+          <a [routerLink]="[]">Edit</a>
+        </tr>
+      </tbody>
+    </table>

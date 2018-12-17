@@ -9,6 +9,10 @@ export class AddwishformComponent implements OnInit {
 
   constructor() { }
 
+  save(passanger){
+    console.log(passanger);
+  }
+
   ngOnInit() {
   }
 
