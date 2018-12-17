@@ -1,8 +1,10 @@
+//dependencies
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require('cors');
+//key
 const keys = require("./config/keys");
-
 //models
 require("./models/User");
 require("./models/Schedule");
@@ -16,13 +18,14 @@ mongoose.connect(keys.mongoURI, {
     password: keys.mongopass
   },
   useNewUrlParser: true
-})
+});
 
 app.use(bodyParser.json());
-
+app.use(cors());
 app.use(require('./middlewares/authenticate'));
 
 //routes
+
 require("./routes/userRoutes")(app);
 require("./routes/scheduleRoutes")(app);
 require("./routes/wishRoutes")(app);

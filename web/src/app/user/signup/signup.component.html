@@ -1,0 +1,30 @@
+<h1> Sign up</h1>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <input type="text" class="form-control" id="firstname" formControlName="firstname" placeholder="First name">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" id="lastname" formControlName="lastname" placeholder="Last name">
+  </div>
+
+  <div class="form-group">
+    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
+  </div>
+
+  <div formGroupName="userPassword">
+    <div class="form-group">
+      <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
+    </div>
+
+    <div class="form-group">
+      <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword"
+             placeholder="Confirm Password">
+      <div class="alert alert-danger" *ngIf="myForm.get('userPassword').touched && !myForm.get('userPassword').valid">
+        Password does not match
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
+</form>
