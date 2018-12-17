@@ -5,6 +5,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
+import { RouterModule } from '@angular/router';
+import { SchedulesModule } from './schedules/schedules.module'
 import {SignupComponent} from './user/signup/signup.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
 import {AddwishformComponent} from './addwishform/addwishform.component';
@@ -27,6 +29,7 @@ import {AuthInterceptor} from "./interceptor/auth-interceptor";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
