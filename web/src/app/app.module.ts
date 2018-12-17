@@ -1,6 +1,7 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +11,7 @@ import { AddwishformComponent } from './addwishform/addwishform.component';
 import { HomeComponent } from './home/home.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { RouterModule } from '@angular/router';
+import { SchedulesModule } from './schedules/schedules.module'
 
 @NgModule({
   declarations: [
@@ -21,8 +23,10 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    SchedulesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

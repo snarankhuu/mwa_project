@@ -5,9 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-   {path: '', component: HomeComponent},
-  {path: 'wishlist',component: WishlistComponent},
-  {path:'addwish', component: AddwishformComponent}
+  { path: '', component: HomeComponent },
+  { path: 'wishlist', component: WishlistComponent },
+  { path: 'addwish', component: AddwishformComponent }
 ];
 
 @NgModule({
