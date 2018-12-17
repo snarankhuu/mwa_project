@@ -4,7 +4,7 @@ const Wish = mongoose.model("wishes");
 
 module.exports = app => {
 
-  app.get('/wish/list', (req, res) => {
+  app.get('/api/wish/list', (req, res) => {
     Wish.find({}, (err, wishes) => {
       if (err) console.log(err)
       console.log(wishes)
@@ -13,7 +13,7 @@ module.exports = app => {
 
   });
 
-  app.post('/wish/add', async (req, res) => {
+  app.post('/api/wish/add', async (req, res) => {
     
     const newWish = new Wish(req.body)
     await newWish.save((err, data) => {
