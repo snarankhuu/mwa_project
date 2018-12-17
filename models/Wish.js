@@ -2,13 +2,13 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const wishSchema = new Schema({
-    pname: {type:string},
-    seat: {type: number},
-    dcity:{type: string},
-    ddate:{type: Date},
-    acity:{type: string},
-    adate:{type:Date},
-    atime:{type:time}
+    pname: { type: String },
+    seat:  { type: Number },
+    dcity: { type: String },
+    ddate: { type: Date },
+    acity: { type: String },
+    adate: { type: Date },
+    atime: { type: String }
     // date: { type: Date, default: Date.now},
     // avalaibleSeat: { type: Number, defualt: 0 },
     // from: {type: String },
