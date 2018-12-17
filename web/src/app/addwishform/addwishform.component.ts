@@ -1,3 +1,4 @@
+import { ApiService } from './../api.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddwishformComponent implements OnInit {
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
-  save(passanger){
+  async save(passanger) {
     console.log(passanger);
+    try {
+      await this.api.addWish(passanger);
+    }
+    catch (error) {
+      console.log(error)
+    }
+
   }
 
   ngOnInit() {

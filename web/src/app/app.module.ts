@@ -32,6 +32,7 @@ import {AuthInterceptor} from "./interceptor/auth-interceptor";
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    SchedulesModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
