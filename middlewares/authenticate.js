@@ -14,7 +14,6 @@ module.exports = (req, res, next) => {
     if (req.url === '/'
         || req.url === '/api/user/signin'
         || req.url === '/api/user/signup'
-        || req.url === '/api/user/secret'
     )
     {
         console.log('non-authorize');

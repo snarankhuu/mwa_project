@@ -24,4 +24,9 @@ export class ApiService {
   addWish(newWish: Wish): Promise<any> {
     return this.http.post('/api/wish/add', newWish).toPromise();
   }
+
+  // Delete on Deploy
+  getUserProfile(): Promise<any> {
+    return this.http.get('/api/user/profile').toPromise();
+  }
 }

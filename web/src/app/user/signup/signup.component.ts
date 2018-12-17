@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {AuthService} from "../auth.service";
@@ -11,17 +11,15 @@ import {AuthService} from "../auth.service";
 })
 export class SignupComponent implements OnInit {
   private myForm: FormGroup;
-  constructor(private  formBuilder : FormBuilder, private auth: AuthService) {
-    this.myForm =  formBuilder.group({
-      'firstname': ['Daniel', [
-        Validators.required
-      ]],
-      'lastname': ['Trinh', [
+
+  constructor(private  formBuilder: FormBuilder, public auth: AuthService) {
+    this.myForm = formBuilder.group({
+      'username': ['Daniel', [
         Validators.required
       ]],
       'email': ['abc@gmail.comg',
         Validators.required,
-        // this.asyncEmailValidator
+        this.asyncEmailValidator.bind(this)
       ],
       'userPassword': formBuilder.group({
           'password': ['abc', [
@@ -42,28 +40,47 @@ export class SignupComponent implements OnInit {
   asyncEmailValidator(control: FormControl): Promise<any> | Observable<any> {
     return new Promise<any>(
       (resolve, reject) => {
+        let currAuth = this.auth;
+
         setTimeout(() => {
-          if (control.value === 'abc@gmail.com') {
-            console.log(control.value);
-            resolve(null);
-          } else {
-            console.log('email ok');
-            resolve(null);
-          }
+          currAuth.validate(control.value)
+            .subscribe((emailExists) => {
+                if(emailExists)
+                {
+                  console.log('email already existed')
+                  resolve({'exists': true});
+                }
+                else
+                  resolve(null);
+              },
+              (error) => {
+                console.log('error occurred');
+              });
         }, 1500);
       }
     );
   }
 
   onSubmit() {
+    // this.auth.validate('abc@gmail.comg')
+    //   .subscribe((res) => {
+    //       if(!res)
+    //         console.log({'unmatched': true});
+    //       else
+    //         console.log(null);
+    //     },
+    //     (error) => {
+    //       console.log('error occurred');
+    //     });
+
     this.auth.logup(this.myForm.value)
       .subscribe((res) => {
-        console.log(res);
-      },
-      (error) => {
-        console.log('error occurred');
-      }
-    );
+          console.log(res);
+        },
+        (error) => {
+          console.log('error occurred');
+        }
+      );
   }
 
 

@@ -9,8 +9,8 @@ const userSchema = new Schema({
   },
   username: {
     type: String,
-    unique: true,
-    required: true
+    required: true,
+    unique: false
   },
   password: String,
   active: { type: Boolean, default: true }
