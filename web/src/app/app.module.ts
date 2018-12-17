@@ -31,6 +31,7 @@ import {TokenService} from "./services/token.service";
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    SchedulesModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
