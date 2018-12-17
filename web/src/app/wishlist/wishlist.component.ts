@@ -1,3 +1,4 @@
+import { ApiService } from './../api.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
+  passengers$;
+  constructor(private api:ApiService) { 
+    this.passengers$=api.wishes();
+  }
 
-  constructor() { }
-
+  
   ngOnInit() {
   }
 
