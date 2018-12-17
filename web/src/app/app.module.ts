@@ -10,6 +10,7 @@ import { AddwishformComponent } from './addwishform/addwishform.component';
 import { HomeComponent } from './home/home.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import {HttpClientModule} from "@angular/common/http";
+import {AuthService} from "./user/auth.service";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {HttpClientModule} from "@angular/common/http";
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

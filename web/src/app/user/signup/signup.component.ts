@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styles: ['']
+  styles: [''],
+  providers: [AuthService]
 })
 export class SignupComponent implements OnInit {
   private myForm: FormGroup;
-  constructor(private  formBuilder : FormBuilder, private http: HttpClient) {
+  constructor(private  formBuilder : FormBuilder, private auth: AuthService) {
     this.myForm =  formBuilder.group({
       'firstname': ['Daniel', [
         Validators.required
@@ -55,9 +56,8 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    this.http.post('http://localhost:3000/api/signup',
-      this.myForm.value
-    ).subscribe((res) => {
+    this.auth.logup(this.myForm.value)
+      .subscribe((res) => {
         console.log(res);
       },
       (error) => {

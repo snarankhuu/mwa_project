@@ -4,8 +4,12 @@ const User = mongoose.model("users");
 
 module.exports = app => {
 
-  app.get('/user/login', (req, res) => {
-      res.end('abc')
-  });
+    const baseRoute = '/api/user/';
 
+    app.post(baseRoute + 'signup', (req, res) => {
+        // check for duplicate email
+        res.status(200).json(req.body);
+    });
+
+    
 };
