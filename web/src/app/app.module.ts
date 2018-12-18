@@ -59,7 +59,6 @@ export class AppModule {
       INITIAL_STATE,
       null
     )
-
     if (auth.isLoggedIn()) auth.getUser();
   }
 }
