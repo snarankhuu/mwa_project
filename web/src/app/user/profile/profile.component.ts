@@ -28,7 +28,6 @@ export class ProfileComponent implements OnInit {
   }
 
   onLogout() {
-    this.token.deleteToken();
-    this.router.navigate(['/signin']);
+    this.auth.logOut();
   }
 }

@@ -16,8 +16,16 @@
       </li>
 
     </ul>
-    <a class="btn btn-outline-success my-2 my-sm-0" routerLink="/signin">Sign In</a>
-    <a class="btn btn-outline-success my-2 my-sm-0" routerLink="/signup">Sign Up</a>
+
+    <div class="not_logged_in" *ngIf="!isLoggedIn()">
+      <a class="btn btn-outline-success my-2 my-sm-0" routerLink="/signin">Sign In</a>
+      <a class="btn btn-outline-success my-2 my-sm-0" routerLink="/signup">Sign Up</a>
+    </div>
+
+    <div class="logged_in" *ngIf="isLoggedIn()">
+      <a class="btn btn-outline-success my-2 my-sm-0" routerLink="/profile">Your Profile</a>
+      <a class="btn btn-outline-success my-2 my-sm-0" (click)="onLogout()" href="javascript:void(0)">Sign Out</a>
+    </div>
   </div>
 </nav>
   

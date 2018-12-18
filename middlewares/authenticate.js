@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
         || req.url === '/api/user/signup'
     ) {
         console.log('no need authorize');
-
+        next();
     } else {
         console.log('must authorize');
 //auth
@@ -39,5 +39,4 @@ module.exports = (req, res, next) => {
             )
         }
     }
-    // next();
 };
