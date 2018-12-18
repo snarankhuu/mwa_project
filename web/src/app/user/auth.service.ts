@@ -1,15 +1,16 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {TokenService} from "../services/token.service";
-import {Router} from "@angular/router";
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { TokenService } from "../services/token.service";
+import { Router } from "@angular/router";
 import * as decode from 'jwt-decode';
+import { UserService } from './user.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private token: TokenService, private router: Router) {
+  constructor(private http: HttpClient, private token: TokenService, private router: Router, private user: UserService) {
   }
 
   logup(credentials) {
@@ -20,14 +21,14 @@ export class AuthService {
     return this.http.post('http://localhost:8000/api/user/signin', credentials);
   }
 
-  logOut()
-  {
+  logOut() {
+    this.user.setUser(null)
     this.token.deleteToken();
     this.router.navigate(['/signin']);
   }
 
   validate(email) {
-    return this.http.post('http://localhost:8000/api/user/validateEmail', {email: email});
+    return this.http.post('http://localhost:8000/api/user/validateEmail', { email: email });
   }
 
   isLoggedIn() {
@@ -38,6 +39,14 @@ export class AuthService {
       return false;
   }
 
+  async getUser() {
+    let decoded = decode(this.token.getToken());
+    let email = decoded.sub;
+    const user = await this.http.get('http://localhost:8000/api/user/profile?email=' + email).toPromise();
+    this.user.setUser(user);
+    return user
+  }
+  
   getUserProfile() {
     let decoded = decode(this.token.getToken());
     let email = decoded.sub;

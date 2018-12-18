@@ -18,6 +18,10 @@ import {TokenService} from "./services/token.service";
 import {AuthInterceptor} from "./interceptor/auth-interceptor";
 import {AuthGuard} from "./guard/auth.guard";
 import {ProfileComponent} from './user/profile/profile.component';
+import { NgReduxModule, NgRedux } from '@angular-redux/store';
+
+
+import { INITIAL_STATE, rootReducer, AppState } from './user/store';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,7 @@ import {ProfileComponent} from './user/profile/profile.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    NgReduxModule,
     DataTableModule.forRoot(),
     SchedulesModule,
     ReactiveFormsModule,
@@ -48,4 +53,13 @@ import {ProfileComponent} from './user/profile/profile.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(ngRedux: NgRedux<AppState>, auth: AuthService) {
+    ngRedux.configureStore(
+      rootReducer,
+      INITIAL_STATE,
+      null
+    )
+
+    if (auth.isLoggedIn()) auth.getUser();
+  }
 }

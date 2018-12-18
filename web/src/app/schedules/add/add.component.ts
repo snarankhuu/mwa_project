@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { select } from "@angular-redux/store";
+import { Observable } from "rxjs";
+import { User } from '../../user/types'
 
 
 @Component({
@@ -29,7 +32,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 <label for="car">Car</label>
 <select id="car" formControlName="car" class="form-control" required>
   <option value="-">Select Car</option>
-  <option *ngFor="let car of cars"> {{car.model}}, {{car.year}}</option>
+  <option *ngFor="let car of (user | async)?.cars"> {{car.model}}, {{car.year}}</option>
 </select>
 
 </div>
@@ -47,6 +50,7 @@ export class AddComponent implements OnInit {
   form: FormGroup;
   cars: Object[];
   error: string = null;
+  @select("user") user: Observable<User>;
   constructor(private api: ApiService, private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       'date': ['', Validators.required],
@@ -60,11 +64,6 @@ export class AddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cars = [
-      { model: "Ford Mustang", year: 2012 },
-      { model: "Fiat 500", year: 2000 },
-      { model: "Volvo XC90", year: 1994 }
-    ]
   }
 
   async onSubmit() {

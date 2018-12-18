@@ -57,7 +57,7 @@ module.exports = app => {
 
                     // TODO: send token expired
                     res.status(200).json(
-                        {idToken: token}
+                        {idToken: token, user}
                     );
                 }
             } else {
