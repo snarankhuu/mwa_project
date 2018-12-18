@@ -1,6 +1,7 @@
 import { ApiService } from './../api.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {AuthService} from "../user/auth.service";
 
 @Component({
   selector: 'app-addwishform',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 })
 export class AddwishformComponent implements OnInit {
 
-  constructor(private router:Router,private api: ApiService) { }
+  private username;
+  constructor(private router:Router,private api: ApiService,private auth: AuthService) { }
 
   async save(passanger) {
     console.log(passanger);
@@ -23,6 +25,15 @@ export class AddwishformComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.getUserProfile().subscribe(
+      res => {
+        console.log(res);
+        this.username = res['username'];
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
 }

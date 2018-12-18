@@ -1,7 +1,7 @@
 <form #f="ngForm" (ngSubmit)="save(f.value)">
     <div class="form-group">
       <label for="pname">Name</label>
-      <input #pname="ngModel" ngModel name="pname" id="pname" type="text" class="form-control" required>
+      <input #pname="ngModel" ngModel name="pname" id="pname" type="text" class="form-control" required value="{{username}}">
       <div class="alert alert-danger" *ngIf="pname.touched && pname.invalid ">
         Name is required.
       </div>
