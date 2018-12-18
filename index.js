@@ -25,12 +25,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(require('./middlewares/authenticate'));
 
-//dev
-// app.use(express.static(path.join(__dirname, 'web/dist/web')));
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'web/dist/web/index.html'));
-// });
-
 //routes
 
 require("./routes/userRoutes")(app);

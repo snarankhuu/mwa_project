@@ -34,8 +34,8 @@ export class ApiService {
     return this.http.post('/api/wish/add', newWish).toPromise();
   }
 
-  // Delete on Deploy
-  getUserProfile(): Promise<any> {
-    return this.http.get('/api/user/profile').toPromise();
+  addCar(carInfo){
+    return this.http.post('/api/user/car/add', carInfo);
   }
+
 }
