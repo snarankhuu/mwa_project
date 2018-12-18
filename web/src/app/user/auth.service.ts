@@ -11,15 +11,15 @@ export class AuthService {
   }
 
   logup(credentials) {
-    return this.http.post('api/user/signup', credentials);
+    return this.http.post(' http://localhost:8000/api/user/signup', credentials);
   }
 
   login(credentials) {
-    return this.http.post('api/user/signin', credentials);
+    return this.http.post('http://localhost:8000/api/user/signin', credentials);
   }
 
   validate(email) {
-    return this.http.post('api/user/validateEmail', {email: email});
+    return this.http.post('http://localhost:8000/api/user/validateEmail', {email: email});
   }
 
   isLoggedIn() {
@@ -30,4 +30,9 @@ export class AuthService {
     else
       return false;
   }
+
+  getUserProfile(email) {
+    return this.http.get('http://localhost:8000/api/user/profile?email=' + email);
+  }
+
 }

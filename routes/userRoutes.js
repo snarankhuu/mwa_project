@@ -42,7 +42,6 @@ module.exports = app => {
 
             //email exists
             if (user) {
-
                 if (!user.verifyPassword(credentials.password)) {
                     res.status(400).json({
                         "status": "fail",
@@ -71,10 +70,11 @@ module.exports = app => {
     });
 
     app.get(baseRoute + 'profile', (req, res) => {
-        User.findOne({email: credentials.email}, (err, users) => {
+        User.findOne({email: req.query.email}, (err, users) => {
             if (err) console.log(err);
             res.status(200).json(users);
-        })
+        });
 
+        console.log('user profile');
     });
 };

@@ -11,10 +11,15 @@ export class AuthInterceptor implements HttpInterceptor {
     const id_token = localStorage.getItem('id_token');
     console.log('interceptor');
     if (id_token) {
-      console.log('id token saved in authorization');
+      console.log('id token saved in authorization ' + id_token);
       const cloned = req.clone({
-        headers: req.headers.set('Authorization', 'Bearer ' + id_token)
+        setHeaders: {
+          Authorization: `Bearer ${id_token}`
+        }
       });
+
+
+      console.log(cloned);
       return next.handle(cloned);
     } else {
       return next.handle(req);

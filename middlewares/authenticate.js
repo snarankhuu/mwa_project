@@ -14,20 +14,20 @@ module.exports = (req, res, next) => {
         console.log('must authorize');
 //auth
         let token;
-        console.log(req.headers);
-        if ('authorization' in req.headers)
-            token = req.headers['authorization'].split(' ')[1];
+        // if ('authorization' in req.headers)
+        //             token = req.headers['authorization'].split(' ')[1];
+        token = req.headers['authorization'].split(' ')[1];
 
         if (!token) {
             return res.status(403).json({message: 'No token'});
         } else {
+            console.log(token);
             jwt.verify(token, RSA_PUBLIC_KEY,
                 (err, decoded) => {
                     if (err)
                         return res.status(500).send({auth: false, message: 'Token authentication failed.'});
                     else {
                         req._id = decoded._id;
-                        next();
                     }
                 }
             )
