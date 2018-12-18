@@ -33,11 +33,11 @@ require("./routes/wishRoutes")(app);
 
 //env
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("web/build"));
+    app.use(express.static("web/dist"));
 
     const path = require("path");
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "web", "build", "index.html"));
+        res.sendFile(path.resolve(__dirname, "web", "dist", "index.html"));
     });
 }
 
