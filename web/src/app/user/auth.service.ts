@@ -32,7 +32,6 @@ export class AuthService {
 
   isLoggedIn() {
     let userPayload = this.token.getUserPayload();
-    console.log(userPayload);
     if (userPayload)
       return userPayload.exp > Date.now() / 1000;
     else

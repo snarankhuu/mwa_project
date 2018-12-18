@@ -7,7 +7,7 @@
   <div class="form-group">
     <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email">
     <div class="alert alert-danger" *ngIf="
-    myForm.get('email').touched &&
+    !myForm.get('email').pending &&
     !myForm.get('email').valid">Email already existed</div>
   </div>
 

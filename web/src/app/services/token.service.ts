@@ -18,7 +18,7 @@ export class TokenService {
   }
 
   deleteToken() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('id_token');
   }
 
   getUserPayload() {
