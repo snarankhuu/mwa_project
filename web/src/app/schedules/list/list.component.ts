@@ -28,7 +28,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
         <th>Avalaible/All Seats</th>
         <th>Car</th>
         <th>Driver</th>
-        <th>Action</th>
+        <th>Seat</th>
       </tr>
     </thead>
     <tbody>
@@ -39,10 +39,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
         <td><strong>{{s.seat - s.passengers.length}}</strong>/{{s.seat}}</td>
         <td>{{s.car}} </td>
         <td>{{s.user?.name}}</td>
-        <td><button type="button" class="btn btn-primary btn-sm" (click)="onTakeSeat(s)">Take seat</button></td>
+        <td>
+        <button type="button" class="btn btn-primary btn-sm" (click)="onTakeSeat(s)">Take</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="onCancelSeat(s)">Cancel</button>
+        </td>
       </tr>
     </tbody>
   </table>
+  
   `,
   styles: []
 })
@@ -76,5 +80,8 @@ export class ListComponent implements OnInit {
   }
   onTakeSeat(s) {
     if (this.api.takeSeat(s)) this.fetchSchedules();
+  }
+  onCancelSeat(s){
+    if (this.api.cancelSeat(s)) this.fetchSchedules();
   }
 }
