@@ -1,6 +1,7 @@
 export interface Schedule {
     _id: string,
-    name: string,
+    from: string,
+    to: string,
     date: string,
     avalaibleSeat: number
   }
