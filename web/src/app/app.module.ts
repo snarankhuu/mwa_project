@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
-import { RouterModule } from '@angular/router';
 import { SchedulesModule } from './schedules/schedules.module'
 import {SignupComponent} from './user/signup/signup.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
@@ -16,6 +15,8 @@ import {SigninComponent} from './user/signin/signin.component';
 import {AuthService} from "./user/auth.service";
 import {TokenService} from "./services/token.service";
 import {AuthInterceptor} from "./interceptor/auth-interceptor";
+import {AuthGuard} from "./guard/auth.guard";
+import { ProfileComponent } from './user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {AuthInterceptor} from "./interceptor/auth-interceptor";
     AddwishformComponent,
     HomeComponent,
     BsNavbarComponent,
-    SigninComponent
+    SigninComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ import {AuthInterceptor} from "./interceptor/auth-interceptor";
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  }],
+  }, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

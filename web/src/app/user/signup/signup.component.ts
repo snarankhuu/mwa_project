@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,7 @@ import {AuthService} from "../auth.service";
 export class SignupComponent implements OnInit {
   private myForm: FormGroup;
 
-  constructor(private  formBuilder: FormBuilder, public auth: AuthService) {
+  constructor(private  formBuilder: FormBuilder, public auth: AuthService, private router: Router) {
     this.myForm = formBuilder.group({
       'username': ['Daniel', [
         Validators.required
@@ -76,6 +77,7 @@ export class SignupComponent implements OnInit {
     this.auth.logup(this.myForm.value)
       .subscribe((res) => {
           console.log(res);
+          this.router.navigateByUrl('/signin');
         },
         (error) => {
           console.log('error occurred');

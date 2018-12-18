@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {HttpClient} from "@angular/common/http";
 import {TokenService} from "../../services/token.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'signin',
@@ -13,10 +14,10 @@ import {TokenService} from "../../services/token.service";
 export class SigninComponent implements OnInit {
   myForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private auth: AuthService, private token: TokenService) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private auth: AuthService, private token: TokenService, private router: Router) {
     this.myForm = formBuilder.group({
-      'username': ['aaa', [Validators.required]],
-      'password': ['bbb', [Validators.required]]
+      'email': ['aa@gmail.com', [Validators.required]],
+      'password': ['123', [Validators.required]]
     });
   }
 
@@ -29,8 +30,12 @@ export class SigninComponent implements OnInit {
         (token) => {
           console.log(token);
           this.token.saveToken(token['idToken']);
+          this.router.navigateByUrl('/profile');
         },
-        (err) => console.log(err)
+        (err) => {
+          if(err.status == 400)
+            alert(err.error.message)
+        }
       )
     ;
   }

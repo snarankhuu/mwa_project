@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const User = mongoose.model("users");
 const fs = require("fs");
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 const RSA_PRIVATE_KEY = fs.readFileSync('./private.key');
 
 module.exports = app => {
@@ -9,8 +10,6 @@ module.exports = app => {
     const baseRoute = '/api/user/';
 
     app.post(baseRoute + 'signup', (req, res, next) => {
-        // check for duplicate email
-
         //save
         let user = new User();
         user.username = req.body.username;
@@ -18,11 +17,10 @@ module.exports = app => {
         user.password = req.body.userPassword.password;
         console.log('prepare to save');
         user.save((err, doc) => {
-            if (!err){
+            if (!err) {
                 console.log('after saving');
                 res.status(200).json({'sucess': 200});
-            }
-            else {
+            } else {
                 next(err);
             }
         });
@@ -31,38 +29,49 @@ module.exports = app => {
     app.post(baseRoute + 'validateEmail', (req, res) => {
         User.find({email: req.body.email}, (err, users) => {
             console.log(req.body.email);
-            // if (err) console.log(err);
+            if (err) console.dir(err);
             res.status(200).json(users.length > 0);
         });
     });
 
-    app.post(baseRoute + 'signin', (req, res) => {
-        //TODO: check user exist DB
-        let userExist = true;
+    app.post(baseRoute + 'signin', (req, res, next) => {
         let credentials = req.body;
 
-        if (userExist) {
-            //token key
-            const token = jwt.sign({}, RSA_PRIVATE_KEY, {
-                algorithm: 'RS256',
-                expiresIn: 1,
-                subject: credentials.username
-            });
+        User.findOne({email: credentials.email}, (err, user) => {
+            if (err) next(err);
 
-            // TODO: send token expired
-            res.status(200).json(
-                {idToken: token}
-            );
-        } else {
-            res.status(200).json({
-                "status": "fail",
-                "message": "username and/or password incorrect!"
-            });
-        }
+            //email exists
+            if (user) {
+
+                if (!user.verifyPassword(credentials.password)) {
+                    res.status(400).json({
+                        "status": "fail",
+                        "message": "pass is not correct!"
+                    });
+                } else {
+                    //token key
+                    const token = jwt.sign({}, RSA_PRIVATE_KEY, {
+                        algorithm: 'RS256',
+                        expiresIn: 3000,
+                        subject: credentials.email
+                    });
+
+                    // TODO: send token expired
+                    res.status(200).json(
+                        {idToken: token}
+                    );
+                }
+            } else {
+                res.status(400).json({
+                    "status": "fail",
+                    "message": "username does not exist!"
+                });
+            }
+        });
     });
 
     app.get(baseRoute + 'profile', (req, res) => {
-        User.find({}, (err, users) => {
+        User.findOne({email: credentials.email}, (err, users) => {
             if (err) console.log(err);
             res.status(200).json(users);
         })

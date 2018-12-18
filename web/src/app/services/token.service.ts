@@ -14,7 +14,20 @@ export class TokenService {
   }
 
   getToken() {
-    localStorage.getItem('id_token');
+    return localStorage.getItem('id_token');
   }
-  //TODO: handle token expired
+
+  deleteToken() {
+    localStorage.removeItem('token');
+  }
+
+  getUserPayload() {
+    let token = this.getToken();
+    if (token) {
+      var userPayload = atob(token.split('.')[1]);
+      return JSON.parse(userPayload);
+    } else
+      return null;
+  }
 }
+
