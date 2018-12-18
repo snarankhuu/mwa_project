@@ -6,7 +6,7 @@ module.exports = app => {
 
     app.post('/api/schedule/add', (req, res) => {
         const newSchedule = new Schedule(req.body)
-        let user = { name: 'sg', email: '1@1.c' }
+        let user = { name: req.user.username, email: req.user.email }
         Object.assign(newSchedule.user, user)
         newSchedule.save((err, data) => {
             if (err) console.log(err)
@@ -14,9 +14,19 @@ module.exports = app => {
         })
     });
     app.post('/api/schedule/takeseat', (req, res) => {
-        let user = { name: 'sg', email: '1@1.c' }
+        let user = { name: req.user.username, email: req.user.email }
         Schedule.findOneAndUpdate({ _id: req.body._id, "passengers.email": { $ne: user.email }, "user.email": { $ne: user.email } }, {
             $push: { passengers: user }
+        }, (err, d) => {
+            if (err) console.log(err)
+            res.json(d)
+        })
+
+    });
+    app.post('/api/schedule/cancelseat', (req, res) => {
+        let user = { name: req.user.username, email: req.user.email }
+        Schedule.findOneAndUpdate({ _id: req.body._id }, {
+            $pull: { passengers: user }
         }, (err, d) => {
             if (err) console.log(err)
             res.json(d)

@@ -23,6 +23,9 @@ export class ApiService {
   takeSeat(obj: Object): Promise<any> {
     return this.http.post('/api/schedule/takeseat', obj).toPromise();
   }
+  cancelSeat(obj: Object): Promise<any> {
+    return this.http.post('/api/schedule/cancelseat', obj).toPromise();
+  }
 
   wishes(): Promise<any> {
     return this.http.get('/api/wish/list').toPromise();
