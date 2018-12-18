@@ -1,4 +1,4 @@
-<div *ngIf="userDetails">
+<div *ngIf="userDetails|async">
   <div class="card" style="max-width: 600px;margin: auto" >
     <div class="card-body">
       <h5 class="card-title">Welcome {{(userDetails | async)?.username}}</h5>
