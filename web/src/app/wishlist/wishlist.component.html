@@ -3,6 +3,12 @@
     <p>
       <a routerLink="/addwish" class="btn btn-primary">Add New Route</a>
     </p>
+    <p>
+      <input 
+      #query
+      (keyup)="filter(query.value)"
+      type="text" class="form-control" placeholder="Search Route by departure city...">
+    </p>
 
     <table class="table">
       <thead>
@@ -19,8 +25,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let p of passengers$ | async">
-          <!-- <td>{{p.index}}</td> -->
+        <tr *ngFor="let p of filteredWishs">
+          <!-- <td>{{p._id}}</td> -->
           <td>{{p.pname}}</td>
           <td>{{p.seat}}</td>
           <td>{{p.dcity}}</td>

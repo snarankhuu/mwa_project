@@ -21,6 +21,9 @@ export class ApiService {
   wishes(): Promise<any> {
     return this.http.get('/api/wish/list').toPromise();
   }
+  // getWish(wishId): Promise<any> {
+  //   return this.http.get('/api/wish/wishId').toPromise();
+  // }
   addWish(newWish: Wish): Promise<any> {
     return this.http.post('/api/wish/add', newWish).toPromise();
   }
