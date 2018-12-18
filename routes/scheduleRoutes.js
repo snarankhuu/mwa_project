@@ -24,7 +24,7 @@ module.exports = app => {
 
     });
     app.get('/api/schedule/list', (req, res) => {
-        Schedule.find({}, (err, schedules) => {
+        Schedule.find({}, null, { sort: '-date' }, (err, schedules) => {
             if (err) console.log(err)
             res.json(schedules)
         })
@@ -33,9 +33,9 @@ module.exports = app => {
     app.post('/api/schedule/list', (req, res) => {
         let search = {}
         if (req.body.date != "") Object.assign(search, { date: req.body.date })
-        if (req.body.from != "") Object.assign(search, { from: req.body.from })
-        if (req.body.to != "") Object.assign(search, { to: req.body.to })
-        Schedule.find(search, (err, schedules) => {
+        if (req.body.from != "") Object.assign(search, { from: { $regex: req.body.from, $options: 'i' } })
+        if (req.body.to != "") Object.assign(search, { to: { $regex: req.body.to, $options: 'i' } })
+        Schedule.find(search, null, { sort: '-date' }, (err, schedules) => {
             if (err) console.log(err)
             res.json(schedules)
         })

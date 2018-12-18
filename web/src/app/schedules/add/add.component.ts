@@ -28,6 +28,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 <div class="form-group">
 <label for="car">Car</label>
 <select id="car" formControlName="car" class="form-control" required>
+  <option value="-">Select Car</option>
   <option *ngFor="let car of cars"> {{car.model}}, {{car.year}}</option>
 </select>
 
@@ -37,6 +38,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 <input type="number" id="seat" formControlName="seat" class="form-control" required/>
 </div>
 <button class="btn btn-primary" type="submit" [disabled]="!form.valid" color="primary">Submit</button>
+<span color="warn">{{ error }}</span>
 </form>
   `,
   styles: []
@@ -44,6 +46,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddComponent implements OnInit {
   form: FormGroup;
   cars: Object[];
+  error: string = null;
   constructor(private api: ApiService, private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
       'date': ['', Validators.required],
@@ -69,10 +72,11 @@ export class AddComponent implements OnInit {
       console.log(this.form.value)
       await this.api.addSchedule(this.form.value);
 
-    //  this.router.navigateByUrl('schedule');
+      this.router.navigateByUrl('schedule');
 
     } catch (error) {
       console.log(error)
+      this.error = 'Schedule creation failed'
     }
 
   }
