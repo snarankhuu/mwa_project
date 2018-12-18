@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {TokenService} from "../services/token.service";
+import * as decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   }
 
   logup(credentials) {
-    return this.http.post(' http://localhost:8000/api/user/signup', credentials);
+    return this.http.post('http://localhost:8000/api/user/signup', credentials);
   }
 
   login(credentials) {
@@ -31,7 +32,10 @@ export class AuthService {
       return false;
   }
 
-  getUserProfile(email) {
+  getUserProfile() {
+    let decoded = decode(this.token.getToken());
+    let email = decoded.sub;
+    console.log(email);
     return this.http.get('http://localhost:8000/api/user/profile?email=' + email);
   }
 

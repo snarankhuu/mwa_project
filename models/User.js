@@ -13,6 +13,12 @@ const userSchema = new Schema({
     required: true,
     unique: false
   },
+  cars: [
+    {
+      model : String,
+      year : { type: Number }
+    }
+  ],
   password: String,
   active: { type: Boolean, default: true }
 });
