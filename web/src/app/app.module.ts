@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {DataTableModule} from 'angular5-data-table';
 
 import { RouterModule } from '@angular/router';
 import { SchedulesModule } from './schedules/schedules.module'
@@ -31,6 +32,7 @@ import {TokenService} from "./services/token.service";
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    DataTableModule.forRoot(),
     SchedulesModule,
     ReactiveFormsModule,
     HttpClientModule

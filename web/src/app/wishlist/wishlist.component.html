@@ -10,10 +10,77 @@
       type="text" class="form-control" placeholder="Search Route by departure city...">
     </p>
 
-    <table class="table">
+  <data-table 
+  [items]="items"
+  [itemCount]="itemCount"
+  (reload)="reloadItems($event)"
+  > 
+
+    <data-table-column
+    [property]="'pname'"
+    [header]="'Name'"
+    [sortable]="true"
+    [resizable]="true"
+    >
+    </data-table-column>
+
+    <data-table-column
+    [property]="'seat'"
+    [header]="'# of Seat'"
+    [sortable]="true"
+    [resizable]="true"
+    >
+    </data-table-column>
+
+    <data-table-column
+    [property]="'dcity'"
+    [header]="'Departure City'"
+    [sortable]="true"
+    [resizable]="true"
+    >
+    </data-table-column>
+
+    <data-table-column
+    [property]="'ddate'"
+    [header]="'Departure Date'"
+    [sortable]="true"
+    >
+    <ng-template #dataTableCell let-item="item">
+      <span>{{item.ddate | date:'yyyy-MM-dd'}}</span>
+    </ng-template>
+    </data-table-column>  
+
+    <data-table-column
+    [property]="'acity'"
+    [header]="'Arrival City'"
+    [sortable]="true"
+    [resizable]="true"
+    >
+    </data-table-column>
+
+    <data-table-column
+    [property]="'adate'"
+    [header]="'Arrival Date'"
+    [sortable]="true"
+    >
+    <ng-template #dataTableCell let-item="item">
+      <span>{{item.adate | date:'yyyy-MM-dd'}}</span>
+    </ng-template>
+    </data-table-column>  
+
+    <data-table-column
+    [property]="'atime'"
+    [header]="'Arrival Time'"
+    [sortable]="true"
+    [resizable]="true"
+    >
+    </data-table-column>
+    
+  </data-table>
+
+    <!-- <table class="table">
       <thead>
         <tr>
-          <!-- <th>#</th> -->
           <th>Name</th>
           <th># of Seat</th>
           <th>Departure City</th>
@@ -21,22 +88,18 @@
           <th>Arrival City</th>
           <th>Arrival Date</th>
           <th>Expected Arrival Time</th>
-          <!-- <th>Action</th> -->
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let p of filteredWishs">
-          <!-- <td>{{p._id}}</td> -->
           <td>{{p.pname}}</td>
           <td>{{p.seat}}</td>
           <td>{{p.dcity}}</td>
-          <td>{{p.ddate}}</td>
+          <td>{{p.ddate| date}}</td>
           <td>{{p.acity}}</td>
-          <td>{{p.adate}}</td>
+          <td>{{p.adate|date}}</td>
           <td>{{p.atime}}</td>
-          <!-- <td>
-          <a [routerLink]="[]">Edit</a>
-        </td> -->
+           
         </tr>
       </tbody>
-    </table>
+    </table> -->
