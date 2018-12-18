@@ -18,6 +18,7 @@
   "homepage": "https://github.com/snarankhuu/mwa_project#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "angular-4-data-table": "^0.4.6",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",

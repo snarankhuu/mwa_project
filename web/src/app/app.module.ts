@@ -4,8 +4,9 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {DataTableModule} from 'angular5-data-table';
 
-import { SchedulesModule } from './schedules/schedules.module'
+import {SchedulesModule} from './schedules/schedules.module'
 import {SignupComponent} from './user/signup/signup.component';
 import {WishlistComponent} from './wishlist/wishlist.component';
 import {AddwishformComponent} from './addwishform/addwishform.component';
@@ -16,7 +17,7 @@ import {AuthService} from "./user/auth.service";
 import {TokenService} from "./services/token.service";
 import {AuthInterceptor} from "./interceptor/auth-interceptor";
 import {AuthGuard} from "./guard/auth.guard";
-import { ProfileComponent } from './user/profile/profile.component';
+import {ProfileComponent} from './user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +35,12 @@ import { ProfileComponent } from './user/profile/profile.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    DataTableModule.forRoot(),
     SchedulesModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService, TokenService,{
+  providers: [AuthService, TokenService, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true

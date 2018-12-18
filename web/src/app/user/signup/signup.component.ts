@@ -46,16 +46,14 @@ export class SignupComponent implements OnInit {
         setTimeout(() => {
           currAuth.validate(control.value)
             .subscribe((emailExists) => {
-                if(emailExists)
-                {
+                if (emailExists) {
                   console.log('email already existed')
                   resolve({'exists': true});
-                }
-                else
+                } else
                   resolve(null);
               },
               (error) => {
-                console.log('error occurred');
+                console.log(error.error.message);
               });
         }, 1500);
       }
@@ -63,17 +61,6 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.auth.validate('abc@gmail.comg')
-    //   .subscribe((res) => {
-    //       if(!res)
-    //         console.log({'unmatched': true});
-    //       else
-    //         console.log(null);
-    //     },
-    //     (error) => {
-    //       console.log('error occurred');
-    //     });
-
     this.auth.logup(this.myForm.value)
       .subscribe((res) => {
           console.log(res);

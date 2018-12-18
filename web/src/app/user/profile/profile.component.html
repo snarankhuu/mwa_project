@@ -1,18 +1,53 @@
-<table *ngIf="userDetails" class="table-fill">
-  <thead>
-  <tr>
-    <th colspan="2" class="text-center">User Profile</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>Email</td>
-    <td>{{userDetails.email}}</td>
-  </tr>
-  <tr>
-    <td colspan="2" class="text-center">
-      <input type="button" (click)="onLogout()" value="Logout" />
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div *ngIf="userDetails">
+  <div class="card" style="max-width: 600px;margin: auto" >
+    <div class="card-body">
+      <h5 class="card-title">Welcome {{userDetails.username}}</h5>
+      <div class="row">
+        <div class="col-lg-3 col-md-3" style="text-align: center">
+          <img alt="User Pic" src="https://ui-avatars.com/api/?background=6e9c40&size=256&name={{userDetails.username}}"
+               class="rounded-circle" style="width: 60%;">
+        </div>
+        <div class="col-lg-9 col-md-9">
+          <p>Username: {{userDetails.username}}</p>
+          <p>Email: {{userDetails.email}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="max-width: 600px;margin: auto">
+    <div class="card-body">
+      <h5 class="card-title">Your Cars</h5>
+      <p>Add Car</p>
+      <form [formGroup]="carForm" (ngSubmit)="onCarSubmit()">
+        <div class="form-group row">
+          <div class="col-lg-5 col-md-5">
+            <input formControlName="model" id="model" type="text" class="form-control" placeholder="Model"/>
+          </div>
+          <div class="col-lg-5 col-md-5">
+            <input formControlName="year" id="year" type="number" class="form-control" placeholder="Year"/>
+          </div>
+          <div class="col-lg-2 col-md-2">
+            <button class="btn btn-primary" type="submit" [disabled]="!carForm.valid">Add</button>
+          </div>
+        </div>
+      </form>
+
+      <table class="table" *ngIf="carList">
+        <thead>
+        <tr>
+          <th>Model</th>
+          <th>Year</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of carList">
+          <td>{{c.model}}</td>
+          <td>{{c.year}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

@@ -8,6 +8,7 @@ module.exports = (req, res, next) => {
     if (req.url === '/'
         || req.url === '/api/user/signin'
         || req.url === '/api/user/signup'
+        || req.url === '/api/user/validateEmail'
     ) {
         console.log('no need authorize');
         next();
@@ -15,9 +16,8 @@ module.exports = (req, res, next) => {
         console.log('must authorize');
 //auth
         let token;
-        // if ('authorization' in req.headers)
-        //             token = req.headers['authorization'].split(' ')[1];
-        token = req.headers['authorization'].split(' ')[1];
+        if ('authorization' in req.headers)
+            token = req.headers['authorization'].split(' ')[1];
 
         if (!token) {
             return res.status(403).json({message: 'No token'});
