@@ -12,8 +12,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix web && npm run build --prefix web",
-    "webhook": "lt -p 5000 -s mwaprojectkhangarid"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix web && npm run build --prefix web"
   },
   "repository": {
     "type": "git",
