@@ -1,15 +1,15 @@
 <div *ngIf="userDetails">
   <div class="card" style="max-width: 600px;margin: auto" >
     <div class="card-body">
-      <h5 class="card-title">Welcome {{userDetails.username}}</h5>
+      <h5 class="card-title">Welcome {{(userDetails | async)?.username}}</h5>
       <div class="row">
         <div class="col-lg-3 col-md-3" style="text-align: center">
-          <img alt="User Pic" src="https://ui-avatars.com/api/?background=6e9c40&size=256&name={{userDetails.username}}"
+          <img alt="User Pic" src="https://ui-avatars.com/api/?background=6e9c40&size=256&name={{(userDetails | async)?.username}}"
                class="rounded-circle" style="width: 60%;">
         </div>
         <div class="col-lg-9 col-md-9">
-          <p>Username: {{userDetails.username}}</p>
-          <p>Email: {{userDetails.email}}</p>
+          <p>Username: {{(userDetails | async)?.username}}</p>
+          <p>Email: {{(userDetails | async)?.email}}</p>
         </div>
       </div>
     </div>

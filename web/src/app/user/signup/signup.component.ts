@@ -15,18 +15,18 @@ export class SignupComponent implements OnInit {
 
   constructor(private  formBuilder: FormBuilder, public auth: AuthService, private router: Router) {
     this.myForm = formBuilder.group({
-      'username': ['Daniel', [
+      'username': ['', [
         Validators.required
       ]],
-      'email': ['abc@gmail.comg',
+      'email': ['',
         Validators.required,
         this.asyncEmailValidator.bind(this)
       ],
       'userPassword': formBuilder.group({
-          'password': ['abc', [
+          'password': ['', [
             Validators.required
           ]],
-          'confirmPassword': ['abc', [
+          'confirmPassword': ['', [
             Validators.required
           ]]
         },
