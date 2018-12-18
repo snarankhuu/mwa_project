@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'signin', component: SigninComponent},
   {path: 'profile',component: ProfileComponent, canActivate:[AuthGuard]}
 ];
-  
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

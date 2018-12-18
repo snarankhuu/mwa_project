@@ -1,5 +1,6 @@
 import { ApiService } from './../api.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addwishform',
@@ -8,17 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddwishformComponent implements OnInit {
 
-  constructor(private api: ApiService) { }
+  constructor(private router:Router,private api: ApiService) { }
 
   async save(passanger) {
     console.log(passanger);
     try {
       await this.api.addWish(passanger);
+      this.router.navigate(['/wishlist']);
     }
     catch (error) {
-      console.log(error)
+      console.log("error ",error.message);
     }
-
   }
 
   ngOnInit() {
