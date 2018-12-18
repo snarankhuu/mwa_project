@@ -77,4 +77,18 @@ module.exports = app => {
 
         console.log('user profile');
     });
+
+    app.post(baseRoute + 'car/add', (req, res) => {
+        let car = req.body;
+        console.log(car);
+        let email = req.user.email;
+        User.findOneAndUpdate({email: email}, {$push: {cars: car}},(err, user)=>{
+            if (err)
+                res.status(400).json(err);
+            User.findOne({email: email}, (err, user) => {
+                if (err) console.log(err);
+                res.status(200).json(user);
+            });
+        })
+    });
 };
