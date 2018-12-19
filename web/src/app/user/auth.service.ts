@@ -14,11 +14,11 @@ export class AuthService {
   }
 
   logup(credentials) {
-    return this.http.post('http://localhost:8000/api/user/signup', credentials);
+    return this.http.post('/api/user/signup', credentials);
   }
 
   login(credentials) {
-    return this.http.post('http://localhost:8000/api/user/signin', credentials);
+    return this.http.post('/api/user/signin', credentials);
   }
 
   logOut() {
@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   validate(email) {
-    return this.http.post('http://localhost:8000/api/user/validateEmail', { email: email });
+    return this.http.post('/api/user/validateEmail', { email: email });
   }
 
   isLoggedIn() {
@@ -42,7 +42,7 @@ export class AuthService {
   async getUser() {
     let decoded = decode(this.token.getToken());
     let email = decoded.sub;
-    const user = await this.http.get('http://localhost:8000/api/user/profile?email=' + email).toPromise();
+    const user = await this.http.get('/api/user/profile?email=' + email).toPromise();
     this.user.setUser(user);
     return user
   }
@@ -51,7 +51,7 @@ export class AuthService {
     let decoded = decode(this.token.getToken());
     let email = decoded.sub;
     console.log(email);
-    return this.http.get('http://localhost:8000/api/user/profile?email=' + email);
+    return this.http.get('/api/user/profile?email=' + email);
   }
 
 
