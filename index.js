@@ -21,13 +21,13 @@ mongoose.connect(keys.mongoURI, {
     useNewUrlParser: true
 });
 //env
-//if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, 'web/dist/web')));
 
     app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, "web", "dist", "web", "index.html"));
     });
-//}
+}
 
 app.use(bodyParser.json());
 app.use(cors());

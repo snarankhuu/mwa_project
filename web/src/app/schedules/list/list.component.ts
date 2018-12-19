@@ -51,7 +51,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styles: []
 })
 export class ListComponent implements OnInit {
-  schedules: Object[] = [];
+  schedules: Schedule[] = [];
   form: FormGroup;
   constructor(private api: ApiService, private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -63,20 +63,10 @@ export class ListComponent implements OnInit {
 
   async ngOnInit() {
     await this.fetchSchedules();
-   
-
   }
 
-   fetchSchedules() {
-    this.api.schedules().subscribe(
-      res => {
-        console.log(res)
-        this.schedules.push(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+  async fetchSchedules() {
+    this.schedules = await this.api.schedules();
   }
 
 

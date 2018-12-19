@@ -11,8 +11,12 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  schedules() {
-      return this.http.get('/api/schedule/list');
+  schedules(): Promise<any> {
+    try {
+      return this.http.get('/api/schedule/list').toPromise();
+    } catch (error) {
+      console.log(error)
+    }
   }
   findSchedules(obj: Object): Promise<any> {
     try {
