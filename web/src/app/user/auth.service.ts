@@ -39,10 +39,10 @@ export class AuthService {
       return false;
   }
 
-  async getUser() {
+   getUser() {
     let decoded = decode(this.token.getToken());
     let email = decoded.sub;
-    const user = await this.http.get('/api/user/profile?email=' + email).toPromise();
+    const user = this.http.get('/api/user/profile?email=' + email).toPromise();
     this.user.setUser(user);
     return user
   }
