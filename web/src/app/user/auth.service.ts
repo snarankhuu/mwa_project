@@ -39,14 +39,19 @@ export class AuthService {
       return false;
   }
 
-   getUser() {
-    let decoded = decode(this.token.getToken());
-    let email = decoded.sub;
-    const user = this.http.get('/api/user/profile?email=' + email).toPromise();
-    this.user.setUser(user);
-    return user
+  async getUser() {
+    try {
+      let decoded = decode(this.token.getToken());
+      let email = decoded.sub;
+      const user = await this.http.get('/api/user/profile?email=' + email).toPromise();
+      this.user.setUser(user);
+      return user
+
+    } catch (error) {
+
+    }
   }
-  
+
   getUserProfile() {
     let decoded = decode(this.token.getToken());
     let email = decoded.sub;
