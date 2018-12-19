@@ -20,14 +20,15 @@ mongoose.connect(keys.mongoURI, {
     },
     useNewUrlParser: true
 });
+console.log("fucking env: ", process.env.NODE_ENV, "dhjsadhjsa")
+//env
+//if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, 'web/dist/web')));
 
-// Point static path to dist
-app.use(express.static(path.join(__dirname, 'web/dist/web')));
-console.log(__dirname);
-// Catch all other routes and return the index file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'web/dist/web/index.html'));
-});
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "web", "dist", "web", "index.html"));
+    });
+//}
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -38,23 +39,6 @@ app.use(require('./middlewares/authenticate'));
 require("./routes/userRoutes")(app);
 require("./routes/scheduleRoutes")(app);
 require("./routes/wishRoutes")(app);
-
-//env
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("./web/dist/web"));
-
-    const path = require("path");
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "web", "dist", "web", "index.html"));
-    });
-}
-
-app.use(express.static(path.join(__dirname, 'dist/angular-body')));
-console.log(__dirname);
-// Catch all other routes and return the index file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist//angular-body/index.html'));
-});
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT);

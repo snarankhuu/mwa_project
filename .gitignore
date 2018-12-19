@@ -5,5 +5,5 @@ logs
 node_modules
 package-lock.json
 
-dev.js
+
 .idea/*

@@ -8,11 +8,10 @@
     "npm": "6.1.0"
   },
   "scripts": {
-    "ng": "ng",
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=true npm install --prefix web && npm run build --prefix web"
+    "test": "echo \"Error: no test specified\" && exit 1"
+   // "heroku-postbuild": "npm install --prefix web && npm run build --prefix web"
   },
   "repository": {
     "type": "git",
