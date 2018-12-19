@@ -11,7 +11,6 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-   // "heroku-postbuild": "npm install --prefix web && npm run build --prefix web"
   },
   "repository": {
     "type": "git",

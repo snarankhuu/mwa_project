@@ -20,7 +20,6 @@ mongoose.connect(keys.mongoURI, {
     },
     useNewUrlParser: true
 });
-console.log("fucking env: ", process.env.NODE_ENV, "dhjsadhjsa")
 //env
 //if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, 'web/dist/web')));
